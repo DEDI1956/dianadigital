@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Web Pulsa, Kuota, Token Listrik, VPS, SSH, VMES, dst</title>
+  <title>Web Pulsa & Digital Service Modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       min-height: 100vh;
       min-width: 100vw;
       position: relative;
       overflow-x: hidden;
-      color: #fff;
+      color: #222;
+      background: transparent;
     }
-    /* Animasi background gradasi */
     body::before {
       content: "";
       position: fixed;
@@ -32,106 +35,171 @@
       100% {background-position:0% 50%}
     }
     nav {
-      background: rgba(255,255,255,0.90);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 16px rgba(33,147,176,0.11);
       display: flex;
-      gap: 20px;
+      gap: 18px;
       align-items: center;
-      padding: 10px 16px;
+      padding: 14px 18px;
       position: sticky;
       top: 0;
       z-index: 10;
     }
     nav button {
-      padding: 7px 16px;
-      border-radius: 6px;
+      padding: 8px 18px;
+      border-radius: 8px;
       border: none;
       background: #2196f3;
       color: #fff;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
-      margin-right: 10px;
+      font-size: 1em;
+      margin-right: 8px;
+      transition: background 0.15s;
+    }
+    nav button:hover {
+      background: #1769aa;
     }
     nav input[type="search"] {
-      padding: 6px 10px;
-      border-radius: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      width: 150px;
+      font-size: 1em;
+      width: 180px;
+      background: #f7fafd;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 24px 16px;
+      padding: 32px 12px;
     }
     h2 {
-      color: #fff;
-      text-shadow: 0 2px 4px #0008;
+      color: #185a9d;
       margin-top: 0;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 4px #0001;
     }
     .products {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 28px;
+      justify-content: flex-start;
     }
     .product-card {
-      background: rgba(255,255,255,0.92);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      padding: 18px;
-      width: 220px;
-      color: #222;
-      margin-bottom: 10px;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 4px 32px 0 rgba(33,147,176,0.07), 0 1.5px 6px #0001;
+      padding: 0 0 18px 0;
+      width: 230px;
+      min-width: 190px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      transition: box-shadow .18s, transform .14s;
+      cursor: pointer;
+      position: relative;
+    }
+    .product-card:hover {
+      box-shadow: 0 10px 40px 2px #2193b066, 0 2px 12px #0002;
+      transform: translateY(-5px) scale(1.025);
+    }
+    .product-card img {
+      width: 84px;
+      height: 84px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #f6fafd;
+      margin-top: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px #6dd5ed33;
+      border: 1.5px solid #e0e9f1;
     }
     .product-card h4 {
-      margin: 4px 0 8px 0;
-      color: #185a9d;
+      margin: 3px 0 8px 0;
+      color: #1976d2;
+      font-size: 1.08em;
+      font-weight: 600;
+      min-height: 36px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    .product-card .cat {
+      font-size: 0.97em;
+      color: #2193b0;
+      margin-bottom: 6px;
+    }
+    .product-card .price {
+      color: #ff758c;
+      font-weight: bold;
+      font-size: 1.12em;
+      margin-bottom: 4px;
     }
     .product-card button {
-      margin-top: 10px;
-      background: #2196f3;
+      margin-top: 8px;
+      background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);
       color: #fff;
       border: none;
-      padding: 7px 16px;
-      border-radius: 6px;
+      padding: 8px 22px;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: 600;
+      letter-spacing: 0.3px;
       cursor: pointer;
-      font-weight: bold;
+      box-shadow: 0 2px 12px #43cea244;
+      transition: background 0.13s;
+    }
+    .product-card button:hover {
+      background: linear-gradient(90deg, #2193b0 60%, #43cea2 100%);
     }
     .cart-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 1.03em;
     }
     .cart-list button {
       background: #f44336;
       color: #fff;
       border: none;
-      padding: 3px 10px;
-      border-radius: 5px;
+      padding: 3px 13px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-left: 8px;
+      margin-left: 12px;
+      font-size: .98em;
     }
     .btn-checkout {
-      background: #25D366;
+      background: linear-gradient(90deg, #25D366 60%, #43cea2 100%);
       color: #fff;
       border: none;
-      padding: 9px 28px;
-      border-radius: 8px;
+      padding: 12px 32px;
+      border-radius: 13px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 14px;
-      margin-bottom: 8px;
-      font-size: 1.1em;
+      margin-top: 22px;
+      margin-bottom: 12px;
+      font-size: 1.13em;
+      box-shadow: 0 2px 12px #25d36633;
+      transition: background 0.15s;
+    }
+    .btn-checkout:hover {
+      background: linear-gradient(90deg, #43cea2 60%, #25D366 100%);
     }
     .btn-back {
-      background: #2196f3;
+      background: #1976d2;
       color: #fff;
       border: none;
-      padding: 8px 18px;
-      border-radius: 6px;
+      padding: 8px 22px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 14px;
+      font-size: .98em;
+      box-shadow: 0 2px 8px #2193b055;
     }
+    .btn-back:hover {
+      background: #185a9d;
+    }
+    .cart-list, .cart-list li { color: #185a9d; }
+    .cart-list b { color: #ff7eb3; }
+    .total-b { color: #ff7eb3; }
     /* Tombol chat admin */
     .wa-float {
       position: fixed;
@@ -146,7 +214,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 31px;
+      font-size: 32px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.22);
       text-decoration: none;
       border: 2px solid #fff;
@@ -156,10 +224,14 @@
       box-shadow: 0 6px 24px #25d36677;
       filter: brightness(1.1);
     }
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .products { flex-direction: column; align-items: center;}
       .product-card { width: 97vw; }
-      .container { padding: 12px 2vw;}
+      .container { padding: 10px 2vw;}
+    }
+    @media (max-width: 430px) {
+      nav { flex-direction: column; gap: 10px; }
+      .btn-checkout {width: 100%; font-size: 1em; padding: 12px 0;}
     }
   </style>
 </head>
@@ -172,8 +244,8 @@
   </nav>
   <div class="container">
     <div id="section-home">
-      <h2>Daftar Produk</h2>
-      <input type="text" id="search-produk" placeholder="Cari produk..." style="margin-bottom:14px;padding:6px 10px;border-radius:6px;border:1px solid #ccc;width:200px;">
+      <h2>Daftar Produk Digital</h2>
+      <input type="text" id="search-produk" placeholder="Cari produk..." style="margin-bottom:16px;padding:7px 13px;border-radius:7px;border:1px solid #ccc;width:210px;font-size:1em;">
       <div class="products" id="product-list"></div>
     </div>
     <div id="section-cart" style="display:none;">
@@ -203,7 +275,7 @@
     💬
   </a>
   <script>
-    // Data
+    // Data (ganti url gambar sesuai kebutuhan)
     const adminWA = "6282173914245";
     const categories = [
       "ALL",
@@ -218,16 +290,16 @@
       "Sewa Auto Script"
     ];
     const products = [
-      { name: "Pulsa Telkomsel 10K", category: "Pulsa", price: 12000 },
-      { name: "Pulsa XL 25K", category: "Pulsa", price: 27000 },
-      { name: "Kuota Internet Indosat 5GB", category: "Kuota", price: 31000 },
-      { name: "Token Listrik 50.000", category: "Token Listrik", price: 55000 },
-      { name: "VLES 1 Bulan", category: "VLES", price: 15000 },
-      { name: "VMES 1 Bulan", category: "VMES", price: 20000 },
-      { name: "SSH Premium 1 Bulan", category: "SSH", price: 10000 },
-      { name: "Torajan Pro 1 Bulan", category: "Torajan", price: 25000 },
-      { name: "VPS 1 Bulan", category: "VPS", price: 70000 },
-      { name: "Sewa Script Tunneling", category: "Sewa Auto Script", price: 30000 }
+      { name: "Pulsa Telkomsel 10K", category: "Pulsa", price: 12000, img: "https://assets.tokopedia.net/img/cache/200-square/product-1/2018/4/2/1799855/1799855_3baf3be3-7d65-4a0b-8b47-0f84ca0c2c33_450_450.jpg" },
+      { name: "Pulsa XL 25K", category: "Pulsa", price: 27000, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/XL_Axiata_logo.svg/2560px-XL_Axiata_logo.svg.png" },
+      { name: "Kuota Internet Indosat 5GB", category: "Kuota", price: 31000, img: "https://cdn-2.tstatic.net/tribunnews/foto/bank/images/logo-indosat-ooredoo.jpg" },
+      { name: "Token Listrik 50.000", category: "Token Listrik", price: 55000, img: "https://iconpln.co.id/assets/img/product/token-listrik.png" },
+      { name: "VLES 1 Bulan", category: "VLES", price: 15000, img: "https://cdn-icons-png.flaticon.com/512/1149/1149168.png" },
+      { name: "VMES 1 Bulan", category: "VMES", price: 20000, img: "https://cdn-icons-png.flaticon.com/512/201/201623.png" },
+      { name: "SSH Premium 1 Bulan", category: "SSH", price: 10000, img: "https://cdn-icons-png.flaticon.com/512/1554/1554477.png" },
+      { name: "Torajan Pro 1 Bulan", category: "Torajan", price: 25000, img: "https://cdn-icons-png.flaticon.com/512/1068/1068727.png" },
+      { name: "VPS 1 Bulan", category: "VPS", price: 70000, img: "https://cdn-icons-png.flaticon.com/512/4248/4248443.png" },
+      { name: "Sewa Script Tunneling", category: "Sewa Auto Script", price: 30000, img: "https://cdn-icons-png.flaticon.com/512/5977/5977578.png" }
     ];
 
     // State
@@ -266,13 +338,18 @@
         (selectedCategory === "ALL" || prod.category === selectedCategory) &&
         prod.name.toLowerCase().includes(keyword)
       );
+      if(filtered.length === 0) {
+        productList.innerHTML = `<div style="padding:40px 0;font-size:1.2em;color:#fff;text-align:center;width:100%;">Produk tidak ditemukan</div>`;
+        return;
+      }
       filtered.forEach((prod, idx) => {
         const div = document.createElement('div');
         div.className = 'product-card';
         div.innerHTML = `
+          <img src="${prod.img}" alt="${prod.name}" loading="lazy">
           <h4>${prod.name}</h4>
-          <div>Kategori: ${prod.category}</div>
-          <div>Harga: <b>Rp${prod.price.toLocaleString()}</b></div>
+          <div class="cat">${prod.category}</div>
+          <div class="price">Rp${prod.price.toLocaleString()}</div>
           <button data-idx="${products.indexOf(prod)}">Tambah ke Keranjang</button>
         `;
         div.querySelector('button').onclick = () => {
@@ -293,7 +370,7 @@
     function renderCart() {
       cartList.innerHTML = '';
       if (cart.length === 0) {
-        cartList.innerHTML = '<li style="color:#fff;">Keranjang kosong</li>';
+        cartList.innerHTML = '<li>Keranjang kosong</li>';
         cartTotal.textContent = '';
         return;
       }
@@ -310,14 +387,14 @@
         };
         cartList.appendChild(li);
       });
-      cartTotal.innerHTML = `<b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b>`;
+      cartTotal.innerHTML = `<span class="total-b"><b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b></span>`;
     }
 
     // Render checkout
     function renderCheckout() {
       checkoutList.innerHTML = '';
       if (cart.length === 0) {
-        checkoutList.innerHTML = '<li style="color:#fff;">Keranjang kosong</li>';
+        checkoutList.innerHTML = '<li>Keranjang kosong</li>';
         checkoutTotal.textContent = '';
         waLink.href = "#";
         waLink.onclick = (e) => { e.preventDefault(); };
@@ -328,7 +405,7 @@
         li.textContent = `${item.name} - Rp${item.price.toLocaleString()}`;
         checkoutList.appendChild(li);
       });
-      checkoutTotal.innerHTML = `<b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b>`;
+      checkoutTotal.innerHTML = `<span class="total-b"><b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b></span>`;
       let pesan = `Halo Admin, saya ingin checkout pesanan:\n` +
         cart.map((item, idx) =>
           `${idx + 1}. ${item.name} - Rp${item.price.toLocaleString()}`
