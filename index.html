@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Web Pulsa, Kuota, Token Listrik, VPS, SSH, VMES, dst</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      min-width: 100vw;
+      position: relative;
+      overflow-x: hidden;
+      color: #fff;
+    }
+    /* Animasi background gradasi */
+    body::before {
+      content: "";
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      z-index: -1;
+      background: linear-gradient(270deg, #6dd5ed, #2193b0, #ff758c, #ff7eb3, #43cea2, #185a9d);
+      background-size: 1400% 1400%;
+      animation: gradientBG 16s ease-in-out infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position:0% 50%}
+      25% {background-position:50% 100%}
+      50% {background-position:100% 50%}
+      75% {background-position:50% 0%}
+      100% {background-position:0% 50%}
+    }
+    nav {
+      background: rgba(255,255,255,0.90);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 10px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav button {
+      padding: 7px 16px;
+      border-radius: 6px;
+      border: none;
+      background: #2196f3;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    nav input[type="search"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 150px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+    h2 {
+      color: #fff;
+      text-shadow: 0 2px 4px #0008;
+      margin-top: 0;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 18px;
+      width: 220px;
+      color: #222;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .product-card h4 {
+      margin: 4px 0 8px 0;
+      color: #185a9d;
+    }
+    .product-card button {
+      margin-top: 10px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .cart-list li {
+      margin-bottom: 10px;
+    }
+    .cart-list button {
+      background: #f44336;
+      color: #fff;
+      border: none;
+      padding: 3px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    .btn-checkout {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 9px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+    }
+    .btn-back {
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    /* Tombol chat admin */
+    .wa-float {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1000;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 31px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+      text-decoration: none;
+      border: 2px solid #fff;
+      transition: box-shadow 0.2s;
+    }
+    .wa-float:hover {
+      box-shadow: 0 6px 24px #25d36677;
+      filter: brightness(1.1);
+    }
+    @media (max-width: 600px) {
+      .products { flex-direction: column; align-items: center;}
+      .product-card { width: 97vw; }
+      .container { padding: 12px 2vw;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <button id="btn-home">Beranda</button>
+    <input type="search" id="search-kategori" placeholder="Cari Kategori" list="kategori-list" />
+    <datalist id="kategori-list"></datalist>
+    <button id="btn-cart">Keranjang (<span id="cart-count">0</span>)</button>
+  </nav>
+  <div class="container">
+    <div id="section-home">
+      <h2>Daftar Produk</h2>
+      <input type="text" id="search-produk" placeholder="Cari produk..." style="margin-bottom:14px;padding:6px 10px;border-radius:6px;border:1px solid #ccc;width:200px;">
+      <div class="products" id="product-list"></div>
+    </div>
+    <div id="section-cart" style="display:none;">
+      <h2>Keranjang Belanja</h2>
+      <ul class="cart-list" id="cart-list"></ul>
+      <p id="cart-total"></p>
+      <button class="btn-checkout" id="btn-checkout">Checkout</button>
+      <div>
+        <button class="btn-back" id="btn-back">Kembali ke Beranda</button>
+      </div>
+    </div>
+    <div id="section-checkout" style="display:none;">
+      <h2>Checkout</h2>
+      <p>Pesanan Anda:</p>
+      <ul class="cart-list" id="checkout-list"></ul>
+      <p id="checkout-total"></p>
+      <a target="_blank" id="wa-link">
+        <button class="btn-checkout">Checkout via WhatsApp</button>
+      </a>
+      <div>
+        <button class="btn-back" id="btn-back2">Kembali ke Beranda</button>
+      </div>
+    </div>
+  </div>
+  <!-- Tombol chat admin -->
+  <a href="https://wa.me/6282173914245?text=Halo%20Admin,%20saya%20ingin%20bertanya." class="wa-float" target="_blank" title="Chat Admin via WhatsApp">
+    💬
+  </a>
+  <script>
+    // Data
+    const adminWA = "6282173914245";
+    const categories = [
+      "ALL",
+      "Pulsa",
+      "Kuota",
+      "Token Listrik",
+      "VLES",
+      "VMES",
+      "SSH",
+      "Torajan",
+      "VPS",
+      "Sewa Auto Script"
+    ];
+    const products = [
+      { name: "Pulsa Telkomsel 10K", category: "Pulsa", price: 12000 },
+      { name: "Pulsa XL 25K", category: "Pulsa", price: 27000 },
+      { name: "Kuota Internet Indosat 5GB", category: "Kuota", price: 31000 },
+      { name: "Token Listrik 50.000", category: "Token Listrik", price: 55000 },
+      { name: "VLES 1 Bulan", category: "VLES", price: 15000 },
+      { name: "VMES 1 Bulan", category: "VMES", price: 20000 },
+      { name: "SSH Premium 1 Bulan", category: "SSH", price: 10000 },
+      { name: "Torajan Pro 1 Bulan", category: "Torajan", price: 25000 },
+      { name: "VPS 1 Bulan", category: "VPS", price: 70000 },
+      { name: "Sewa Script Tunneling", category: "Sewa Auto Script", price: 30000 }
+    ];
+
+    // State
+    let selectedCategory = "ALL";
+    let cart = [];
+
+    // DOM refs
+    const productList = document.getElementById('product-list');
+    const cartList = document.getElementById('cart-list');
+    const checkoutList = document.getElementById('checkout-list');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutTotal = document.getElementById('checkout-total');
+    const sectionHome = document.getElementById('section-home');
+    const sectionCart = document.getElementById('section-cart');
+    const sectionCheckout = document.getElementById('section-checkout');
+    const cartCount = document.getElementById('cart-count');
+    const waLink = document.getElementById('wa-link');
+    const searchProduk = document.getElementById('search-produk');
+    const searchKategori = document.getElementById('search-kategori');
+    const kategoriList = document.getElementById('kategori-list');
+
+    // Inisialisasi kategori di datalist
+    categories.forEach(cat => {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      kategoriList.appendChild(opt);
+    });
+
+    // Render produk
+    function renderProducts() {
+      let keyword = (searchProduk.value || '').toLowerCase();
+      let cat = (searchKategori.value || 'ALL');
+      selectedCategory = categories.includes(cat) ? cat : "ALL";
+      productList.innerHTML = '';
+      const filtered = products.filter(prod =>
+        (selectedCategory === "ALL" || prod.category === selectedCategory) &&
+        prod.name.toLowerCase().includes(keyword)
+      );
+      filtered.forEach((prod, idx) => {
+        const div = document.createElement('div');
+        div.className = 'product-card';
+        div.innerHTML = `
+          <h4>${prod.name}</h4>
+          <div>Kategori: ${prod.category}</div>
+          <div>Harga: <b>Rp${prod.price.toLocaleString()}</b></div>
+          <button data-idx="${products.indexOf(prod)}">Tambah ke Keranjang</button>
+        `;
+        div.querySelector('button').onclick = () => {
+          cart.push(prod);
+          updateCartCount();
+          alert('Berhasil ditambah ke keranjang!');
+        };
+        productList.appendChild(div);
+      });
+    }
+
+    // Update jumlah keranjang di navbar
+    function updateCartCount() {
+      cartCount.textContent = cart.length;
+    }
+
+    // Render keranjang
+    function renderCart() {
+      cartList.innerHTML = '';
+      if (cart.length === 0) {
+        cartList.innerHTML = '<li style="color:#fff;">Keranjang kosong</li>';
+        cartTotal.textContent = '';
+        return;
+      }
+      cart.forEach((item, idx) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.name} - Rp${item.price.toLocaleString()}
+          <button data-idx="${idx}">Hapus</button>
+        `;
+        li.querySelector('button').onclick = () => {
+          cart.splice(idx, 1);
+          renderCart();
+          updateCartCount();
+        };
+        cartList.appendChild(li);
+      });
+      cartTotal.innerHTML = `<b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b>`;
+    }
+
+    // Render checkout
+    function renderCheckout() {
+      checkoutList.innerHTML = '';
+      if (cart.length === 0) {
+        checkoutList.innerHTML = '<li style="color:#fff;">Keranjang kosong</li>';
+        checkoutTotal.textContent = '';
+        waLink.href = "#";
+        waLink.onclick = (e) => { e.preventDefault(); };
+        return;
+      }
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - Rp${item.price.toLocaleString()}`;
+        checkoutList.appendChild(li);
+      });
+      checkoutTotal.innerHTML = `<b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b>`;
+      let pesan = `Halo Admin, saya ingin checkout pesanan:\n` +
+        cart.map((item, idx) =>
+          `${idx + 1}. ${item.name} - Rp${item.price.toLocaleString()}`
+        ).join('\n') +
+        `\nTotal: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}`;
+      waLink.href = `https://wa.me/${adminWA}?text=${encodeURIComponent(pesan)}`;
+      waLink.onclick = null;
+    }
+
+    // Navigasi
+    function showSection(section) {
+      sectionHome.style.display = section === "home" ? "" : "none";
+      sectionCart.style.display = section === "cart" ? "" : "none";
+      sectionCheckout.style.display = section === "checkout" ? "" : "none";
+    }
+
+    // Event binding
+    document.getElementById('btn-home').onclick = () => {
+      showSection('home');
+      renderProducts();
+    };
+    document.getElementById('btn-cart').onclick = () => {
+      showSection('cart');
+      renderCart();
+    };
+    document.getElementById('btn-checkout').onclick = () => {
+      showSection('checkout');
+      renderCheckout();
+    };
+    document.getElementById('btn-back').onclick = () => {
+      showSection('home');
+      renderProducts();
+    };
+    document.getElementById('btn-back2').onclick = () => {
+      showSection('home');
+      renderProducts();
+    };
+    searchProduk.oninput = renderProducts;
+    searchKategori.oninput = renderProducts;
+
+    // Initial render
+    renderProducts();
+    updateCartCount();
+  </script>
+</body>
+</html>
