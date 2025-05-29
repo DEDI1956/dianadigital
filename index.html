@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Web Pulsa & Digital Service Modern</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Zona Master Web PPOB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --zona-blue: #2196f3;
+      --zona-blue-dark: #1976d2;
+      --zona-green: #25D366;
+      --zona-pink: #ff7eb3;
+      --zona-bg: #f7fafd;
+      --zona-gradient: linear-gradient(90deg,#2193b0 0%,#6dd5ed 100%);
+      --zona-radius: 18px;
+    }
     body {
-      margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      min-height: 100vh;
-      min-width: 100vw;
-      position: relative;
-      overflow-x: hidden;
-      color: #222;
+      margin: 0; font-family: 'Inter', Arial, sans-serif; min-height: 100vh;
       background: transparent;
+      color: #222;
+      overflow-x: hidden;
     }
     body::before {
       content: "";
       position: fixed;
-      top:0; left:0; right:0; bottom:0;
-      z-index: -1;
-      background: linear-gradient(270deg, #6dd5ed, #2193b0, #ff758c, #ff7eb3, #43cea2, #185a9d);
+      left:0;top:0;right:0;bottom:0;
+      z-index: -2;
+      background: linear-gradient(270deg, #6dd5ed, #2193b0, #ff7eb3, #43cea2, #185a9d);
       background-size: 1400% 1400%;
       animation: gradientBG 16s ease-in-out infinite;
     }
@@ -34,187 +37,299 @@
       75% {background-position:50% 0%}
       100% {background-position:0% 50%}
     }
-    nav {
-      background: rgba(255,255,255,0.97);
-      box-shadow: 0 2px 16px rgba(33,147,176,0.11);
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      padding: 14px 18px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav button {
-      padding: 8px 18px;
-      border-radius: 8px;
-      border: none;
-      background: #2196f3;
+    .zona-header {
+      background: var(--zona-gradient);
       color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1em;
-      margin-right: 8px;
-      transition: background 0.15s;
-    }
-    nav button:hover {
-      background: #1769aa;
-    }
-    nav input[type="search"] {
-      padding: 7px 14px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      width: 180px;
-      background: #f7fafd;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 12px;
-    }
-    h2 {
-      color: #185a9d;
-      margin-top: 0;
-      font-weight: 700;
-      letter-spacing: -1px;
-      text-shadow: 0 2px 4px #0001;
-    }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: flex-start;
-    }
-    .product-card {
-      background: #fff;
-      border-radius: 22px;
-      box-shadow: 0 4px 32px 0 rgba(33,147,176,0.07), 0 1.5px 6px #0001;
-      padding: 0 0 18px 0;
-      width: 230px;
-      min-width: 190px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow .18s, transform .14s;
-      cursor: pointer;
+      padding: 26px 0 18px 0;
+      text-align: center;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: 0 4px 16px #2193b055;
       position: relative;
     }
-    .product-card:hover {
-      box-shadow: 0 10px 40px 2px #2193b066, 0 2px 12px #0002;
-      transform: translateY(-5px) scale(1.025);
-    }
-    .product-card img {
-      width: 84px;
-      height: 84px;
+    .zona-header-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 2px 12px #2193b033;
       object-fit: contain;
-      border-radius: 16px;
+      margin-bottom: 7px;
+    }
+    .zona-header-title {
+      margin: 0;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #185a9d44;
+    }
+    .zona-header-sub {
+      margin: 0; font-size: 1.02em; font-weight: 500; opacity: 0.85;
+    }
+    /* Banner */
+    .zona-banner-wrap {
+      max-width: 470px;
+      margin: 16px auto 0 auto;
+      overflow: hidden;
+      border-radius: 19px;
+      box-shadow: 0 2px 12px #2193b022;
+      background: #fff;
+    }
+    .zona-banner {
+      display: flex;
+      transition: transform 0.5s;
+      width: 1410px; /* 3x470px */
+    }
+    .zona-banner img {
+      width: 470px; height: 110px; object-fit: cover;
+    }
+    /* Menu Grid */
+    .zona-menu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 22px;
+      margin: 21px auto 12px auto;
+      max-width: 470px;
+    }
+    .zona-menu-item {
+      width: 82px; height: 94px; 
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      cursor: pointer;
+    }
+    .zona-menu-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 5px;
+      box-shadow: 0 2px 10px #2193b033;
+      font-size: 29px;
+      transition: box-shadow 0.14s;
+    }
+    .zona-menu-item:active .zona-menu-icon,
+    .zona-menu-item:hover .zona-menu-icon {
+      box-shadow: 0 8px 30px #2196f344;
+      background: #6dd5ed;
+    }
+    .zona-menu-label {
+      font-size: .97em;
+      color: #185a9d;
+      text-align: center;
+    }
+    /* Search & Filter */
+    .zona-search-bar {
+      max-width: 470px;
+      margin: 17px auto 13px auto;
+      display: flex; gap: 9px; 
+      align-items: center;
+      background: #fff;
+      border-radius: var(--zona-radius);
+      box-shadow: 0 1.5px 7px #2193b022;
+      padding: 8px 16px;
+    }
+    .zona-search-bar input, .zona-search-bar select {
+      flex:1;
+      border: none;
       background: #f6fafd;
-      margin-top: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 12px #6dd5ed33;
+      padding: 9px 12px;
+      font-size: 1em;
+      border-radius: 9px;
+      outline: none;
+    }
+    .zona-search-bar select {
+      flex:0 0 120px;
+      margin-left: 7px;
+      color: #185a9d;
+      font-weight: 600;
+    }
+    /* Produk */
+    .zona-product-wrap {
+      margin: 0 auto 85px auto;
+      max-width: 470px;
+    }
+    .zona-product-list {
+      display: flex; flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-start;
+    }
+    .zona-product-card {
+      width: 220px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px #185a9d12;
+      padding: 0 0 12px 0;
+      display: flex; flex-direction: column; align-items: center;
+      margin-bottom: 0;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .15s,transform .14s;
+    }
+    .zona-product-card:hover { box-shadow: 0 8px 28px #2193b055; transform: translateY(-2px) scale(1.01);}
+    .zona-product-img {
+      width: 74px; height: 74px;
+      object-fit: contain;
+      border-radius: 15px;
+      background: #f9f9fb;
+      margin-top: 17px;
+      margin-bottom: 12px;
+      box-shadow: 0 1.5px 6px #6dd5ed33;
       border: 1.5px solid #e0e9f1;
     }
-    .product-card h4 {
-      margin: 3px 0 8px 0;
-      color: #1976d2;
-      font-size: 1.08em;
+    .zona-product-name {
+      font-size: 1em;
       font-weight: 600;
-      min-height: 36px;
+      color: #185a9d;
       text-align: center;
-      letter-spacing: -0.5px;
+      margin: 3px 0 5px 0;
+      min-height: 32px;
     }
-    .product-card .cat {
+    .zona-product-cat {
       font-size: 0.97em;
       color: #2193b0;
       margin-bottom: 6px;
     }
-    .product-card .price {
-      color: #ff758c;
+    .zona-product-price {
+      color: #ff7eb3;
       font-weight: bold;
-      font-size: 1.12em;
-      margin-bottom: 4px;
+      font-size: 1.11em;
+      margin-bottom: 6px;
     }
-    .product-card button {
-      margin-top: 8px;
-      background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);
+    .zona-product-card button {
+      background: var(--zona-gradient);
       color: #fff;
       border: none;
-      padding: 8px 22px;
-      border-radius: 10px;
-      font-size: 1em;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: .99em;
       font-weight: 600;
-      letter-spacing: 0.3px;
       cursor: pointer;
-      box-shadow: 0 2px 12px #43cea244;
-      transition: background 0.13s;
+      box-shadow: 0 2px 10px #2193b022;
+      transition: background .13s;
     }
-    .product-card button:hover {
-      background: linear-gradient(90deg, #2193b0 60%, #43cea2 100%);
+    .zona-product-card button:hover { background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);}
+    /* Keranjang */
+    .zona-cart-modal {
+      position: fixed; left:0; top:0; right:0; bottom:0;
+      background: rgba(20,42,80,0.23);
+      z-index: 2001;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
     }
-    .cart-list li {
-      margin-bottom: 12px;
-      font-size: 1.03em;
+    .zona-cart-modal.active { display: flex;}
+    .zona-cart-sheet {
+      width: 100%; max-width: 430px;
+      background: #fff;
+      border-radius: 22px 22px 0 0;
+      box-shadow: 0 -2px 24px #2193b055;
+      padding: 22px 18px 18px 18px;
+      min-height: 210px;
+      min-width: 0;
+      animation: slideUp .25s;
+      position: relative;
     }
-    .cart-list button {
+    @keyframes slideUp {
+      0% {transform: translateY(100px);}
+      100% {transform: translateY(0);}
+    }
+    .zona-cart-title {
+      margin: 0 0 10px 0;
+      color: #185a9d;
+      font-size: 1.16em;
+      font-weight: bold;
+    }
+    .zona-cart-list li {
+      margin-bottom: 10px;
+      color: #185a9d;
+      font-size: .98em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .zona-cart-list button {
       background: #f44336;
       color: #fff;
       border: none;
-      padding: 3px 13px;
-      border-radius: 8px;
+      padding: 3px 12px;
+      border-radius: 7px;
       cursor: pointer;
-      margin-left: 12px;
       font-size: .98em;
     }
-    .btn-checkout {
+    .zona-cart-total { color: #ff7eb3; font-weight: bold; margin-bottom: 12px;}
+    .zona-cart-checkout {
       background: linear-gradient(90deg, #25D366 60%, #43cea2 100%);
       color: #fff;
       border: none;
-      padding: 12px 32px;
-      border-radius: 13px;
+      padding: 10px 22px;
+      border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 22px;
-      margin-bottom: 12px;
+      font-size: 1.08em;
+      box-shadow: 0 2px 8px #25d36633;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      width: 100%;
+    }
+    .zona-cart-sheet .zona-cart-close {
+      position: absolute; right: 16px; top: 12px;
+      background: #fff; color: #185a9d;
+      border: none; font-size: 1.5em; border-radius: 50%;
+      width: 36px; height: 36px; cursor: pointer;
+      box-shadow: 0 2px 8px #2193b022;
+      transition: background .1s;
+    }
+    .zona-cart-sheet .zona-cart-close:hover { background: #f7fafd;}
+    /* Bottom Nav */
+    .zona-bottom-nav {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: #fff;
+      border-top: 1.5px solid #e0e9f1;
+      box-shadow: 0 -1px 10px #2193b022;
+      display: flex; justify-content: space-around; align-items: center;
+      z-index: 999;
+      height: 58px;
+      padding: 0 0;
+    }
+    .zona-nav-btn {
+      flex: 1 1 0;
+      text-align: center;
+      color: #185a9d;
       font-size: 1.13em;
-      box-shadow: 0 2px 12px #25d36633;
-      transition: background 0.15s;
-    }
-    .btn-checkout:hover {
-      background: linear-gradient(90deg, #43cea2 60%, #25D366 100%);
-    }
-    .btn-back {
-      background: #1976d2;
-      color: #fff;
+      padding: 6px 0 0 0;
+      background: none;
       border: none;
-      padding: 8px 22px;
-      border-radius: 8px;
       cursor: pointer;
-      margin-top: 14px;
-      font-size: .98em;
-      box-shadow: 0 2px 8px #2193b055;
+      transition: color .13s;
+      font-weight: 600;
+      position: relative;
     }
-    .btn-back:hover {
-      background: #185a9d;
+    .zona-nav-btn.active, .zona-nav-btn:active { color: #2196f3;}
+    .zona-nav-btn span { font-size: 1.37em; display: block; }
+    .zona-nav-badge {
+      position: absolute; right: 26px; top: 6px;
+      background: #ff7eb3;
+      color: #fff; font-size: .79em; padding: 1px 7px; border-radius: 12px;
+      min-width: 18px; text-align: center;
+      font-weight: bold;
+      letter-spacing: 0;
+      box-shadow: 0 2px 8px #ff7eb344;
     }
-    .cart-list, .cart-list li { color: #185a9d; }
-    .cart-list b { color: #ff7eb3; }
-    .total-b { color: #ff7eb3; }
-    /* Tombol chat admin */
+    /* Floating WA */
     .wa-float {
       position: fixed;
       right: 24px;
-      bottom: 24px;
-      z-index: 1000;
+      bottom: 85px;
+      z-index: 1002;
       background: #25D366;
       color: #fff;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 33px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.22);
       text-decoration: none;
       border: 2px solid #fff;
@@ -224,231 +339,262 @@
       box-shadow: 0 6px 24px #25d36677;
       filter: brightness(1.1);
     }
-    @media (max-width: 700px) {
-      .products { flex-direction: column; align-items: center;}
-      .product-card { width: 97vw; }
-      .container { padding: 10px 2vw;}
-    }
-    @media (max-width: 430px) {
-      nav { flex-direction: column; gap: 10px; }
-      .btn-checkout {width: 100%; font-size: 1em; padding: 12px 0;}
+    /* Responsive */
+    @media (max-width: 550px) {
+      .zona-header, .zona-banner-wrap, .zona-menu-grid, .zona-search-bar, .zona-product-wrap { max-width: 99vw;}
+      .zona-banner img { width: 99vw;}
+      .zona-banner { width: 297vw;}
+      .zona-product-card { width: 98vw;}
+      .zona-cart-sheet { max-width: 98vw;}
     }
   </style>
 </head>
 <body>
-  <nav>
-    <button id="btn-home">Beranda</button>
-    <input type="search" id="search-kategori" placeholder="Cari Kategori" list="kategori-list" />
-    <datalist id="kategori-list"></datalist>
-    <button id="btn-cart">Keranjang (<span id="cart-count">0</span>)</button>
-  </nav>
-  <div class="container">
-    <div id="section-home">
-      <h2>Daftar Produk Digital</h2>
-      <input type="text" id="search-produk" placeholder="Cari produk..." style="margin-bottom:16px;padding:7px 13px;border-radius:7px;border:1px solid #ccc;width:210px;font-size:1em;">
-      <div class="products" id="product-list"></div>
-    </div>
-    <div id="section-cart" style="display:none;">
-      <h2>Keranjang Belanja</h2>
-      <ul class="cart-list" id="cart-list"></ul>
-      <p id="cart-total"></p>
-      <button class="btn-checkout" id="btn-checkout">Checkout</button>
-      <div>
-        <button class="btn-back" id="btn-back">Kembali ke Beranda</button>
-      </div>
-    </div>
-    <div id="section-checkout" style="display:none;">
-      <h2>Checkout</h2>
-      <p>Pesanan Anda:</p>
-      <ul class="cart-list" id="checkout-list"></ul>
-      <p id="checkout-total"></p>
-      <a target="_blank" id="wa-link">
-        <button class="btn-checkout">Checkout via WhatsApp</button>
-      </a>
-      <div>
-        <button class="btn-back" id="btn-back2">Kembali ke Beranda</button>
-      </div>
+  <!-- HEADER -->
+  <div class="zona-header">
+    <img src="https://i.ibb.co/mSvjh8q/zona-logo.png" alt="Zona Master" class="zona-header-logo">
+    <div class="zona-header-title">Zona Master</div>
+    <div class="zona-header-sub">Pusat Pulsa, Kuota, Token & Layanan Digital</div>
+  </div>
+  <!-- PROMO BANNER -->
+  <div class="zona-banner-wrap">
+    <div class="zona-banner" id="zona-banner">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=470&q=80" alt="promo1">
+      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=470&q=80" alt="promo2">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=470&q=80" alt="promo3">
     </div>
   </div>
-  <!-- Tombol chat admin -->
+  <!-- MENU GRID -->
+  <div class="zona-menu-grid">
+    <div class="zona-menu-item" data-cat="Pulsa"><div class="zona-menu-icon">📱</div><div class="zona-menu-label">Pulsa</div></div>
+    <div class="zona-menu-item" data-cat="Kuota"><div class="zona-menu-icon">🌐</div><div class="zona-menu-label">Kuota</div></div>
+    <div class="zona-menu-item" data-cat="Token Listrik"><div class="zona-menu-icon">💡</div><div class="zona-menu-label">Token Listrik</div></div>
+    <div class="zona-menu-item" data-cat="VLES"><div class="zona-menu-icon">🔌</div><div class="zona-menu-label">VLES</div></div>
+    <div class="zona-menu-item" data-cat="VMES"><div class="zona-menu-icon">🖧</div><div class="zona-menu-label">VMES</div></div>
+    <div class="zona-menu-item" data-cat="SSH"><div class="zona-menu-icon">🛡️</div><div class="zona-menu-label">SSH</div></div>
+    <div class="zona-menu-item" data-cat="Torajan"><div class="zona-menu-icon">🗂️</div><div class="zona-menu-label">Torajan</div></div>
+    <div class="zona-menu-item" data-cat="VPS"><div class="zona-menu-icon">🖥️</div><div class="zona-menu-label">VPS</div></div>
+    <div class="zona-menu-item" data-cat="Sewa Auto Script"><div class="zona-menu-icon">⚙️</div><div class="zona-menu-label">Script</div></div>
+    <div class="zona-menu-item" data-cat="ALL"><div class="zona-menu-icon">🌟</div><div class="zona-menu-label">Semua</div></div>
+  </div>
+  <!-- SEARCH & FILTER -->
+  <div class="zona-search-bar">
+    <input type="text" id="search-produk" placeholder="Cari produk...">
+    <select id="select-kategori">
+      <option value="ALL">Semua Kategori</option>
+      <option value="Pulsa">Pulsa</option>
+      <option value="Kuota">Kuota</option>
+      <option value="Token Listrik">Token Listrik</option>
+      <option value="VLES">VLES</option>
+      <option value="VMES">VMES</option>
+      <option value="SSH">SSH</option>
+      <option value="Torajan">Torajan</option>
+      <option value="VPS">VPS</option>
+      <option value="Sewa Auto Script">Sewa Script</option>
+    </select>
+  </div>
+  <!-- KATALOG PRODUK -->
+  <div class="zona-product-wrap">
+    <div class="zona-product-list" id="product-list"></div>
+  </div>
+  <!-- KERANJANG MODAL -->
+  <div class="zona-cart-modal" id="zona-cart-modal">
+    <div class="zona-cart-sheet">
+      <button class="zona-cart-close" id="zona-cart-close">&times;</button>
+      <div class="zona-cart-title">Keranjang Belanja</div>
+      <ul class="zona-cart-list" id="cart-list"></ul>
+      <div class="zona-cart-total" id="cart-total"></div>
+      <button class="zona-cart-checkout" id="btn-checkout">Checkout via WhatsApp</button>
+    </div>
+  </div>
+  <!-- FLOATING WA -->
   <a href="https://wa.me/6282173914245?text=Halo%20Admin,%20saya%20ingin%20bertanya." class="wa-float" target="_blank" title="Chat Admin via WhatsApp">
     💬
   </a>
+  <!-- BOTTOM NAV -->
+  <div class="zona-bottom-nav">
+    <button class="zona-nav-btn active" id="nav-home"><span>🏠</span>Home</button>
+    <button class="zona-nav-btn" id="nav-cart">
+      <span>🛒</span>Keranjang
+      <span class="zona-nav-badge" id="cart-badge" style="display:none;">0</span>
+    </button>
+    <button class="zona-nav-btn" id="nav-history"><span>🧾</span>Riwayat</button>
+    <button class="zona-nav-btn" id="nav-akun"><span>👤</span>Akun</button>
+  </div>
   <script>
-    // Data (ganti url gambar sesuai kebutuhan)
-    const adminWA = "6282173914245";
-    const categories = [
-      "ALL",
-      "Pulsa",
-      "Kuota",
-      "Token Listrik",
-      "VLES",
-      "VMES",
-      "SSH",
-      "Torajan",
-      "VPS",
-      "Sewa Auto Script"
-    ];
-    const products = [
-      { name: "Pulsa Telkomsel 10K", category: "Pulsa", price: 12000, img: "https://assets.tokopedia.net/img/cache/200-square/product-1/2018/4/2/1799855/1799855_3baf3be3-7d65-4a0b-8b47-0f84ca0c2c33_450_450.jpg" },
-      { name: "Pulsa XL 25K", category: "Pulsa", price: 27000, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/XL_Axiata_logo.svg/2560px-XL_Axiata_logo.svg.png" },
-      { name: "Kuota Internet Indosat 5GB", category: "Kuota", price: 31000, img: "https://cdn-2.tstatic.net/tribunnews/foto/bank/images/logo-indosat-ooredoo.jpg" },
-      { name: "Token Listrik 50.000", category: "Token Listrik", price: 55000, img: "https://iconpln.co.id/assets/img/product/token-listrik.png" },
-      { name: "VLES 1 Bulan", category: "VLES", price: 15000, img: "https://cdn-icons-png.flaticon.com/512/1149/1149168.png" },
-      { name: "VMES 1 Bulan", category: "VMES", price: 20000, img: "https://cdn-icons-png.flaticon.com/512/201/201623.png" },
-      { name: "SSH Premium 1 Bulan", category: "SSH", price: 10000, img: "https://cdn-icons-png.flaticon.com/512/1554/1554477.png" },
-      { name: "Torajan Pro 1 Bulan", category: "Torajan", price: 25000, img: "https://cdn-icons-png.flaticon.com/512/1068/1068727.png" },
-      { name: "VPS 1 Bulan", category: "VPS", price: 70000, img: "https://cdn-icons-png.flaticon.com/512/4248/4248443.png" },
-      { name: "Sewa Script Tunneling", category: "Sewa Auto Script", price: 30000, img: "https://cdn-icons-png.flaticon.com/512/5977/5977578.png" }
-    ];
+  // Banner slider
+  let bannerIndex = 0;
+  setInterval(() => {
+    bannerIndex = (bannerIndex + 1) % 3;
+    document.getElementById('zona-banner').style.transform = `translateX(-${bannerIndex*470}px)`;
+  }, 3400);
 
-    // State
-    let selectedCategory = "ALL";
-    let cart = [];
+  // Produk Data (ganti url gambar sesuai kebutuhan)
+  const adminWA = "6282173914245";
+  const categories = [
+    "ALL","Pulsa","Kuota","Token Listrik","VLES","VMES","SSH","Torajan","VPS","Sewa Auto Script"
+  ];
+  const products = [
+    { name: "Pulsa Telkomsel 10K", category: "Pulsa", price: 12000, img: "https://assets.tokopedia.net/img/cache/200-square/product-1/2018/4/2/1799855/1799855_3baf3be3-7d65-4a0b-8b47-0f84ca0c2c33_450_450.jpg" },
+    { name: "Pulsa XL 25K", category: "Pulsa", price: 27000, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/XL_Axiata_logo.svg/2560px-XL_Axiata_logo.svg.png" },
+    { name: "Kuota Indosat 5GB", category: "Kuota", price: 31000, img: "https://cdn-2.tstatic.net/tribunnews/foto/bank/images/logo-indosat-ooredoo.jpg" },
+    { name: "Token Listrik 50.000", category: "Token Listrik", price: 55000, img: "https://iconpln.co.id/assets/img/product/token-listrik.png" },
+    { name: "VLES 1 Bulan", category: "VLES", price: 15000, img: "https://cdn-icons-png.flaticon.com/512/1149/1149168.png" },
+    { name: "VMES 1 Bulan", category: "VMES", price: 20000, img: "https://cdn-icons-png.flaticon.com/512/201/201623.png" },
+    { name: "SSH Premium 1 Bulan", category: "SSH", price: 10000, img: "https://cdn-icons-png.flaticon.com/512/1554/1554477.png" },
+    { name: "Torajan Pro 1 Bulan", category: "Torajan", price: 25000, img: "https://cdn-icons-png.flaticon.com/512/1068/1068727.png" },
+    { name: "VPS 1 Bulan", category: "VPS", price: 70000, img: "https://cdn-icons-png.flaticon.com/512/4248/4248443.png" },
+    { name: "Sewa Script Tunneling", category: "Sewa Auto Script", price: 30000, img: "https://cdn-icons-png.flaticon.com/512/5977/5977578.png" }
+  ];
 
-    // DOM refs
-    const productList = document.getElementById('product-list');
-    const cartList = document.getElementById('cart-list');
-    const checkoutList = document.getElementById('checkout-list');
-    const cartTotal = document.getElementById('cart-total');
-    const checkoutTotal = document.getElementById('checkout-total');
-    const sectionHome = document.getElementById('section-home');
-    const sectionCart = document.getElementById('section-cart');
-    const sectionCheckout = document.getElementById('section-checkout');
-    const cartCount = document.getElementById('cart-count');
-    const waLink = document.getElementById('wa-link');
-    const searchProduk = document.getElementById('search-produk');
-    const searchKategori = document.getElementById('search-kategori');
-    const kategoriList = document.getElementById('kategori-list');
+  // State
+  let cart = [];
 
-    // Inisialisasi kategori di datalist
-    categories.forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat;
-      kategoriList.appendChild(opt);
+  // DOM refs
+  const productList = document.getElementById('product-list');
+  const cartList = document.getElementById('cart-list');
+  const cartTotal = document.getElementById('cart-total');
+  const cartModal = document.getElementById('zona-cart-modal');
+  const cartBadge = document.getElementById('cart-badge');
+  const btnCheckout = document.getElementById('btn-checkout');
+
+  // Render produk
+  function renderProducts(filterCat = "ALL", keyword = "") {
+    productList.innerHTML = '';
+    const filtered = products.filter(prod =>
+      (filterCat === "ALL" || prod.category === filterCat) &&
+      prod.name.toLowerCase().includes(keyword.toLowerCase())
+    );
+    if(filtered.length === 0) {
+      productList.innerHTML = `<div style="padding:40px 0;font-size:1.1em;color:#185a9d;text-align:center;width:100%;">Produk tidak ditemukan</div>`;
+      return;
+    }
+    filtered.forEach(prod => {
+      const div = document.createElement('div');
+      div.className = 'zona-product-card';
+      div.innerHTML = `
+        <img src="${prod.img}" alt="${prod.name}" class="zona-product-img" loading="lazy">
+        <div class="zona-product-name">${prod.name}</div>
+        <div class="zona-product-cat">${prod.category}</div>
+        <div class="zona-product-price">Rp${prod.price.toLocaleString()}</div>
+        <button>Tambah</button>
+      `;
+      div.querySelector('button').onclick = () => {
+        cart.push(prod);
+        updateCartUI();
+        showCart();
+      };
+      productList.appendChild(div);
     });
+  }
 
-    // Render produk
-    function renderProducts() {
-      let keyword = (searchProduk.value || '').toLowerCase();
-      let cat = (searchKategori.value || 'ALL');
-      selectedCategory = categories.includes(cat) ? cat : "ALL";
-      productList.innerHTML = '';
-      const filtered = products.filter(prod =>
-        (selectedCategory === "ALL" || prod.category === selectedCategory) &&
-        prod.name.toLowerCase().includes(keyword)
-      );
-      if(filtered.length === 0) {
-        productList.innerHTML = `<div style="padding:40px 0;font-size:1.2em;color:#fff;text-align:center;width:100%;">Produk tidak ditemukan</div>`;
-        return;
-      }
-      filtered.forEach((prod, idx) => {
-        const div = document.createElement('div');
-        div.className = 'product-card';
-        div.innerHTML = `
-          <img src="${prod.img}" alt="${prod.name}" loading="lazy">
-          <h4>${prod.name}</h4>
-          <div class="cat">${prod.category}</div>
-          <div class="price">Rp${prod.price.toLocaleString()}</div>
-          <button data-idx="${products.indexOf(prod)}">Tambah ke Keranjang</button>
-        `;
-        div.querySelector('button').onclick = () => {
-          cart.push(prod);
-          updateCartCount();
-          alert('Berhasil ditambah ke keranjang!');
-        };
-        productList.appendChild(div);
-      });
+  // Update badge & keranjang
+  function updateCartUI() {
+    if(cart.length > 0) {
+      cartBadge.style.display = '';
+      cartBadge.textContent = cart.length;
+    } else {
+      cartBadge.style.display = 'none';
     }
-
-    // Update jumlah keranjang di navbar
-    function updateCartCount() {
-      cartCount.textContent = cart.length;
+    // Render keranjang modal
+    cartList.innerHTML = '';
+    if(cart.length === 0) {
+      cartList.innerHTML = '<li>Keranjang kosong</li>';
+      cartTotal.textContent = '';
+      btnCheckout.disabled = true;
+      btnCheckout.style.opacity = 0.7;
+      return;
     }
+    btnCheckout.disabled = false; btnCheckout.style.opacity = 1;
+    cart.forEach((item, idx) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${item.name} <small style="color:#2193b0;">(${item.category})</small>
+        <b style="color:#ff7eb3;margin-left:9px;">Rp${item.price.toLocaleString()}</b></span>
+        <button data-idx="${idx}">Hapus</button>
+      `;
+      li.querySelector('button').onclick = () => {
+        cart.splice(idx, 1);
+        updateCartUI();
+      };
+      cartList.appendChild(li);
+    });
+    cartTotal.innerHTML = `<b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b>`;
+  }
 
-    // Render keranjang
-    function renderCart() {
-      cartList.innerHTML = '';
-      if (cart.length === 0) {
-        cartList.innerHTML = '<li>Keranjang kosong</li>';
-        cartTotal.textContent = '';
-        return;
-      }
-      cart.forEach((item, idx) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          ${item.name} - Rp${item.price.toLocaleString()}
-          <button data-idx="${idx}">Hapus</button>
-        `;
-        li.querySelector('button').onclick = () => {
-          cart.splice(idx, 1);
-          renderCart();
-          updateCartCount();
-        };
-        cartList.appendChild(li);
-      });
-      cartTotal.innerHTML = `<span class="total-b"><b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b></span>`;
+  // Show/hide cart modal
+  function showCart() {
+    cartModal.classList.add('active');
+    document.body.style.overflowY = 'hidden';
+  }
+  function hideCart() {
+    cartModal.classList.remove('active');
+    document.body.style.overflowY = '';
+  }
+  document.getElementById('zona-cart-close').onclick = hideCart;
+  cartModal.onclick = e => { if(e.target === cartModal) hideCart(); };
+
+  // Menu grid click
+  document.querySelectorAll('.zona-menu-item').forEach(el => {
+    el.onclick = () => {
+      const cat = el.getAttribute('data-cat');
+      document.getElementById('select-kategori').value = cat;
+      renderProducts(cat, document.getElementById('search-produk').value);
+      window.scrollTo({top: 380, behavior: "smooth"});
     }
+  });
 
-    // Render checkout
-    function renderCheckout() {
-      checkoutList.innerHTML = '';
-      if (cart.length === 0) {
-        checkoutList.innerHTML = '<li>Keranjang kosong</li>';
-        checkoutTotal.textContent = '';
-        waLink.href = "#";
-        waLink.onclick = (e) => { e.preventDefault(); };
-        return;
-      }
-      cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - Rp${item.price.toLocaleString()}`;
-        checkoutList.appendChild(li);
-      });
-      checkoutTotal.innerHTML = `<span class="total-b"><b>Total: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}</b></span>`;
-      let pesan = `Halo Admin, saya ingin checkout pesanan:\n` +
-        cart.map((item, idx) =>
-          `${idx + 1}. ${item.name} - Rp${item.price.toLocaleString()}`
-        ).join('\n') +
-        `\nTotal: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}`;
-      waLink.href = `https://wa.me/${adminWA}?text=${encodeURIComponent(pesan)}`;
-      waLink.onclick = null;
-    }
+  // Search & Filter
+  document.getElementById('search-produk').oninput = e => {
+    renderProducts(document.getElementById('select-kategori').value, e.target.value);
+  };
+  document.getElementById('select-kategori').onchange = e => {
+    renderProducts(e.target.value, document.getElementById('search-produk').value);
+  };
 
-    // Navigasi
-    function showSection(section) {
-      sectionHome.style.display = section === "home" ? "" : "none";
-      sectionCart.style.display = section === "cart" ? "" : "none";
-      sectionCheckout.style.display = section === "checkout" ? "" : "none";
-    }
+  // Bottom nav
+  document.getElementById('nav-home').onclick = () => {
+    document.getElementById('nav-home').classList.add('active');
+    document.getElementById('nav-cart').classList.remove('active');
+    document.getElementById('nav-history').classList.remove('active');
+    document.getElementById('nav-akun').classList.remove('active');
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
+  document.getElementById('nav-cart').onclick = () => {
+    showCart();
+    document.getElementById('nav-cart').classList.add('active');
+    document.getElementById('nav-home').classList.remove('active');
+    document.getElementById('nav-history').classList.remove('active');
+    document.getElementById('nav-akun').classList.remove('active');
+  };
+  document.getElementById('nav-history').onclick = () => {
+    alert('Fitur riwayat transaksi dalam pengembangan.');
+  };
+  document.getElementById('nav-akun').onclick = () => {
+    alert('Fitur akun profil dalam pengembangan.');
+  };
 
-    // Event binding
-    document.getElementById('btn-home').onclick = () => {
-      showSection('home');
-      renderProducts();
-    };
-    document.getElementById('btn-cart').onclick = () => {
-      showSection('cart');
-      renderCart();
-    };
-    document.getElementById('btn-checkout').onclick = () => {
-      showSection('checkout');
-      renderCheckout();
-    };
-    document.getElementById('btn-back').onclick = () => {
-      showSection('home');
-      renderProducts();
-    };
-    document.getElementById('btn-back2').onclick = () => {
-      showSection('home');
-      renderProducts();
-    };
-    searchProduk.oninput = renderProducts;
-    searchKategori.oninput = renderProducts;
+  // Cart checkout
+  btnCheckout.onclick = () => {
+    if(cart.length === 0) return;
+    let pesan = `Halo Admin, saya ingin checkout pesanan:\n` +
+      cart.map((item, idx) =>
+        `${idx + 1}. ${item.name} - Rp${item.price.toLocaleString()}`
+      ).join('\n') +
+      `\nTotal: Rp${cart.reduce((a, b) => a + b.price, 0).toLocaleString()}`;
+    let url = `https://wa.me/${adminWA}?text=${encodeURIComponent(pesan)}`;
+    window.open(url, '_blank');
+    hideCart();
+  };
 
-    // Initial render
-    renderProducts();
-    updateCartCount();
+  // ESC to close cart
+  document.addEventListener('keydown', e => {
+    if (e.key === "Escape") hideCart();
+  });
+
+  // Init
+  renderProducts();
+  updateCartUI();
   </script>
 </body>
 </html>
