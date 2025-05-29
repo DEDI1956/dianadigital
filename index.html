@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Zona Master Web PPOB</title>
+  <title>Zona Master PPOB</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -15,6 +15,7 @@
       --zona-gradient: linear-gradient(90deg,#2193b0 0%,#6dd5ed 100%);
       --zona-radius: 18px;
     }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0; font-family: 'Inter', Arial, sans-serif; min-height: 100vh;
       background: transparent;
@@ -40,70 +41,91 @@
     .zona-header {
       background: var(--zona-gradient);
       color: #fff;
-      padding: 26px 0 18px 0;
+      padding: 24px 0 16px 0;
       text-align: center;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
       box-shadow: 0 4px 16px #2193b055;
       position: relative;
     }
     .zona-header-logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
       background: #fff;
       box-shadow: 0 2px 12px #2193b033;
       object-fit: contain;
-      margin-bottom: 7px;
+      margin-bottom: 5px;
+      margin-top: 3px;
     }
     .zona-header-title {
       margin: 0;
-      font-size: 1.6em;
+      font-size: 1.26em;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: .5px;
       text-shadow: 0 2px 8px #185a9d44;
     }
     .zona-header-sub {
-      margin: 0; font-size: 1.02em; font-weight: 500; opacity: 0.85;
+      margin: 0; font-size: .93em; font-weight: 500; opacity: 0.85;
     }
     /* Banner */
     .zona-banner-wrap {
-      max-width: 470px;
-      margin: 16px auto 0 auto;
+      max-width: 99vw; width: 99vw;
+      margin: 14px auto 0 auto;
       overflow: hidden;
-      border-radius: 19px;
-      box-shadow: 0 2px 12px #2193b022;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #2193b022;
       background: #fff;
+      position: relative;
     }
     .zona-banner {
       display: flex;
       transition: transform 0.5s;
-      width: 1410px; /* 3x470px */
+      width: 300vw;
     }
     .zona-banner img {
-      width: 470px; height: 110px; object-fit: cover;
+      width: 100vw; height: 90px; object-fit: cover;
+      display: block;
+      user-select: none;
+      pointer-events: none;
     }
+    /* Dot indicator */
+    .zona-banner-dots {
+      position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 5px;
+    }
+    .zona-banner-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #2193b0; opacity: 0.5; transition: opacity .2s;
+    }
+    .zona-banner-dot.active { opacity: 1; background: #25D366;}
     /* Menu Grid */
     .zona-menu-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px 22px;
-      margin: 21px auto 12px auto;
-      max-width: 470px;
+      gap: 10px 0;
+      margin: 10px auto 6px auto;
+      width: 100%;
+      max-width: 410px;
     }
     .zona-menu-item {
-      width: 82px; height: 94px; 
+      width: 25vw; max-width: 95px; min-width: 74px;
+      height: 86px; 
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       cursor: pointer;
+      margin-bottom: 13px;
+      user-select: none;
+      border: none;
+      background: none;
+      outline: none;
     }
     .zona-menu-icon {
-      width: 56px; height: 56px; border-radius: 50%;
+      width: 44px; height: 44px; border-radius: 50%;
       background: #fff;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 5px;
-      box-shadow: 0 2px 10px #2193b033;
-      font-size: 29px;
+      margin-bottom: 3px;
+      box-shadow: 0 2px 8px #2193b033;
+      font-size: 22px;
       transition: box-shadow 0.14s;
     }
     .zona-menu-item:active .zona-menu-icon,
@@ -112,105 +134,108 @@
       background: #6dd5ed;
     }
     .zona-menu-label {
-      font-size: .97em;
+      font-size: .95em;
       color: #185a9d;
       text-align: center;
+      font-weight: 600;
+      letter-spacing: -.2px;
     }
     /* Search & Filter */
     .zona-search-bar {
-      max-width: 470px;
-      margin: 17px auto 13px auto;
-      display: flex; gap: 9px; 
+      max-width: 420px;
+      margin: 10px auto 8px auto;
+      display: flex; gap: 7px; 
       align-items: center;
       background: #fff;
       border-radius: var(--zona-radius);
       box-shadow: 0 1.5px 7px #2193b022;
-      padding: 8px 16px;
+      padding: 7px 12px 7px 12px;
     }
     .zona-search-bar input, .zona-search-bar select {
       flex:1;
       border: none;
       background: #f6fafd;
-      padding: 9px 12px;
+      padding: 9px 10px;
       font-size: 1em;
       border-radius: 9px;
       outline: none;
     }
     .zona-search-bar select {
-      flex:0 0 120px;
-      margin-left: 7px;
+      flex:0 0 98px;
+      margin-left: 4px;
       color: #185a9d;
       font-weight: 600;
     }
     /* Produk */
     .zona-product-wrap {
-      margin: 0 auto 85px auto;
-      max-width: 470px;
+      margin: 0 auto 70px auto;
+      max-width: 420px;
+      padding-left: 5px; padding-right: 5px;
     }
     .zona-product-list {
       display: flex; flex-wrap: wrap;
-      gap: 18px;
+      gap: 13px;
       justify-content: flex-start;
     }
     .zona-product-card {
-      width: 220px;
+      width: 48vw; max-width: 190px; min-width: 135px;
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px #185a9d12;
-      padding: 0 0 12px 0;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #185a9d13;
+      padding: 0 0 10px 0;
       display: flex; flex-direction: column; align-items: center;
       margin-bottom: 0;
       position: relative;
       overflow: hidden;
-      transition: box-shadow .15s,transform .14s;
+      transition: box-shadow .13s,transform .13s;
     }
-    .zona-product-card:hover { box-shadow: 0 8px 28px #2193b055; transform: translateY(-2px) scale(1.01);}
+    .zona-product-card:hover { box-shadow: 0 8px 18px #2193b044; transform: translateY(-2px) scale(1.01);}
     .zona-product-img {
-      width: 74px; height: 74px;
+      width: 54px; height: 54px;
       object-fit: contain;
-      border-radius: 15px;
+      border-radius: 12px;
       background: #f9f9fb;
-      margin-top: 17px;
-      margin-bottom: 12px;
+      margin-top: 11px;
+      margin-bottom: 8px;
       box-shadow: 0 1.5px 6px #6dd5ed33;
-      border: 1.5px solid #e0e9f1;
+      border: 1.2px solid #e0e9f1;
     }
     .zona-product-name {
-      font-size: 1em;
+      font-size: .99em;
       font-weight: 600;
       color: #185a9d;
       text-align: center;
-      margin: 3px 0 5px 0;
-      min-height: 32px;
+      margin: 2px 0 5px 0;
+      min-height: 24px;
     }
     .zona-product-cat {
-      font-size: 0.97em;
+      font-size: 0.94em;
       color: #2193b0;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .zona-product-price {
       color: #ff7eb3;
       font-weight: bold;
-      font-size: 1.11em;
-      margin-bottom: 6px;
+      font-size: 1em;
+      margin-bottom: 5px;
     }
     .zona-product-card button {
       background: var(--zona-gradient);
       color: #fff;
       border: none;
-      padding: 8px 20px;
-      border-radius: 8px;
-      font-size: .99em;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: .97em;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 2px 10px #2193b022;
+      box-shadow: 0 2px 8px #2193b022;
       transition: background .13s;
     }
-    .zona-product-card button:hover { background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);}
+    .zona-product-card button:active { background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);}
     /* Keranjang */
     .zona-cart-modal {
       position: fixed; left:0; top:0; right:0; bottom:0;
-      background: rgba(20,42,80,0.23);
+      background: rgba(20,42,80,0.11);
       z-index: 2001;
       display: none;
       align-items: flex-end;
@@ -220,12 +245,12 @@
     .zona-cart-sheet {
       width: 100%; max-width: 430px;
       background: #fff;
-      border-radius: 22px 22px 0 0;
+      border-radius: 17px 17px 0 0;
       box-shadow: 0 -2px 24px #2193b055;
-      padding: 22px 18px 18px 18px;
-      min-height: 210px;
+      padding: 18px 13px 13px 13px;
+      min-height: 170px;
       min-width: 0;
-      animation: slideUp .25s;
+      animation: slideUp .22s;
       position: relative;
     }
     @keyframes slideUp {
@@ -233,15 +258,15 @@
       100% {transform: translateY(0);}
     }
     .zona-cart-title {
-      margin: 0 0 10px 0;
+      margin: 0 0 9px 0;
       color: #185a9d;
-      font-size: 1.16em;
+      font-size: 1.09em;
       font-weight: bold;
     }
     .zona-cart-list li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #185a9d;
-      font-size: .98em;
+      font-size: .97em;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -250,53 +275,53 @@
       background: #f44336;
       color: #fff;
       border: none;
-      padding: 3px 12px;
+      padding: 2px 9px;
       border-radius: 7px;
       cursor: pointer;
-      font-size: .98em;
+      font-size: .97em;
     }
-    .zona-cart-total { color: #ff7eb3; font-weight: bold; margin-bottom: 12px;}
+    .zona-cart-total { color: #ff7eb3; font-weight: bold; margin-bottom: 10px;}
     .zona-cart-checkout {
       background: linear-gradient(90deg, #25D366 60%, #43cea2 100%);
       color: #fff;
       border: none;
-      padding: 10px 22px;
-      border-radius: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 1.08em;
+      font-size: 1.06em;
       box-shadow: 0 2px 8px #25d36633;
-      margin-top: 16px;
-      margin-bottom: 4px;
+      margin-top: 11px;
+      margin-bottom: 2px;
       width: 100%;
     }
     .zona-cart-sheet .zona-cart-close {
-      position: absolute; right: 16px; top: 12px;
+      position: absolute; right: 10px; top: 10px;
       background: #fff; color: #185a9d;
-      border: none; font-size: 1.5em; border-radius: 50%;
-      width: 36px; height: 36px; cursor: pointer;
+      border: none; font-size: 1.3em; border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer;
       box-shadow: 0 2px 8px #2193b022;
       transition: background .1s;
     }
-    .zona-cart-sheet .zona-cart-close:hover { background: #f7fafd;}
+    .zona-cart-sheet .zona-cart-close:active { background: #f7fafd;}
     /* Bottom Nav */
     .zona-bottom-nav {
       position: fixed;
       left: 0; right: 0; bottom: 0;
       background: #fff;
-      border-top: 1.5px solid #e0e9f1;
-      box-shadow: 0 -1px 10px #2193b022;
+      border-top: 1.2px solid #e0e9f1;
+      box-shadow: 0 -1px 6px #2193b022;
       display: flex; justify-content: space-around; align-items: center;
       z-index: 999;
-      height: 58px;
+      height: 48px;
       padding: 0 0;
     }
     .zona-nav-btn {
       flex: 1 1 0;
       text-align: center;
       color: #185a9d;
-      font-size: 1.13em;
-      padding: 6px 0 0 0;
+      font-size: 1.02em;
+      padding: 3px 0 0 0;
       background: none;
       border: none;
       cursor: pointer;
@@ -305,12 +330,12 @@
       position: relative;
     }
     .zona-nav-btn.active, .zona-nav-btn:active { color: #2196f3;}
-    .zona-nav-btn span { font-size: 1.37em; display: block; }
+    .zona-nav-btn span { font-size: 1.18em; display: block; }
     .zona-nav-badge {
-      position: absolute; right: 26px; top: 6px;
+      position: absolute; right: 19px; top: 3px;
       background: #ff7eb3;
-      color: #fff; font-size: .79em; padding: 1px 7px; border-radius: 12px;
-      min-width: 18px; text-align: center;
+      color: #fff; font-size: .78em; padding: 1px 6px; border-radius: 11px;
+      min-width: 16px; text-align: center;
       font-weight: bold;
       letter-spacing: 0;
       box-shadow: 0 2px 8px #ff7eb344;
@@ -318,34 +343,33 @@
     /* Floating WA */
     .wa-float {
       position: fixed;
-      right: 24px;
-      bottom: 85px;
+      right: 19px;
+      bottom: 57px;
       z-index: 1002;
       background: #25D366;
       color: #fff;
       border-radius: 50%;
-      width: 58px;
-      height: 58px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 33px;
+      font-size: 28px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.22);
       text-decoration: none;
       border: 2px solid #fff;
       transition: box-shadow 0.2s;
     }
-    .wa-float:hover {
-      box-shadow: 0 6px 24px #25d36677;
-      filter: brightness(1.1);
-    }
-    /* Responsive */
-    @media (max-width: 550px) {
+    .wa-float:active { box-shadow: 0 4px 12px #25d36677; }
+    @media (max-width: 430px) {
       .zona-header, .zona-banner-wrap, .zona-menu-grid, .zona-search-bar, .zona-product-wrap { max-width: 99vw;}
-      .zona-banner img { width: 99vw;}
-      .zona-banner { width: 297vw;}
+      .zona-banner img { width: 100vw;}
+      .zona-banner { width: 300vw;}
       .zona-product-card { width: 98vw;}
       .zona-cart-sheet { max-width: 98vw;}
+    }
+    @media (max-width: 350px) {
+      .zona-header-title { font-size: 1em;}
     }
   </style>
 </head>
@@ -359,29 +383,30 @@
   <!-- PROMO BANNER -->
   <div class="zona-banner-wrap">
     <div class="zona-banner" id="zona-banner">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=470&q=80" alt="promo1">
-      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=470&q=80" alt="promo2">
-      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=470&q=80" alt="promo3">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="promo1">
+      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="promo2">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="promo3">
     </div>
+    <div class="zona-banner-dots" id="zona-banner-dots"></div>
   </div>
   <!-- MENU GRID -->
   <div class="zona-menu-grid">
-    <div class="zona-menu-item" data-cat="Pulsa"><div class="zona-menu-icon">📱</div><div class="zona-menu-label">Pulsa</div></div>
-    <div class="zona-menu-item" data-cat="Kuota"><div class="zona-menu-icon">🌐</div><div class="zona-menu-label">Kuota</div></div>
-    <div class="zona-menu-item" data-cat="Token Listrik"><div class="zona-menu-icon">💡</div><div class="zona-menu-label">Token Listrik</div></div>
-    <div class="zona-menu-item" data-cat="VLES"><div class="zona-menu-icon">🔌</div><div class="zona-menu-label">VLES</div></div>
-    <div class="zona-menu-item" data-cat="VMES"><div class="zona-menu-icon">🖧</div><div class="zona-menu-label">VMES</div></div>
-    <div class="zona-menu-item" data-cat="SSH"><div class="zona-menu-icon">🛡️</div><div class="zona-menu-label">SSH</div></div>
-    <div class="zona-menu-item" data-cat="Torajan"><div class="zona-menu-icon">🗂️</div><div class="zona-menu-label">Torajan</div></div>
-    <div class="zona-menu-item" data-cat="VPS"><div class="zona-menu-icon">🖥️</div><div class="zona-menu-label">VPS</div></div>
-    <div class="zona-menu-item" data-cat="Sewa Auto Script"><div class="zona-menu-icon">⚙️</div><div class="zona-menu-label">Script</div></div>
-    <div class="zona-menu-item" data-cat="ALL"><div class="zona-menu-icon">🌟</div><div class="zona-menu-label">Semua</div></div>
+    <button class="zona-menu-item" data-cat="Pulsa"><div class="zona-menu-icon">📱</div><div class="zona-menu-label">Pulsa</div></button>
+    <button class="zona-menu-item" data-cat="Kuota"><div class="zona-menu-icon">🌐</div><div class="zona-menu-label">Kuota</div></button>
+    <button class="zona-menu-item" data-cat="Token Listrik"><div class="zona-menu-icon">💡</div><div class="zona-menu-label">Token</div></button>
+    <button class="zona-menu-item" data-cat="VLES"><div class="zona-menu-icon">🔌</div><div class="zona-menu-label">VLES</div></button>
+    <button class="zona-menu-item" data-cat="VMES"><div class="zona-menu-icon">🖧</div><div class="zona-menu-label">VMES</div></button>
+    <button class="zona-menu-item" data-cat="SSH"><div class="zona-menu-icon">🛡️</div><div class="zona-menu-label">SSH</div></button>
+    <button class="zona-menu-item" data-cat="Torajan"><div class="zona-menu-icon">🗂️</div><div class="zona-menu-label">Torajan</div></button>
+    <button class="zona-menu-item" data-cat="VPS"><div class="zona-menu-icon">🖥️</div><div class="zona-menu-label">VPS</div></button>
+    <button class="zona-menu-item" data-cat="Sewa Auto Script"><div class="zona-menu-icon">⚙️</div><div class="zona-menu-label">Script</div></button>
+    <button class="zona-menu-item" data-cat="ALL"><div class="zona-menu-icon">🌟</div><div class="zona-menu-label">Semua</div></button>
   </div>
   <!-- SEARCH & FILTER -->
   <div class="zona-search-bar">
     <input type="text" id="search-produk" placeholder="Cari produk...">
     <select id="select-kategori">
-      <option value="ALL">Semua Kategori</option>
+      <option value="ALL">Semua</option>
       <option value="Pulsa">Pulsa</option>
       <option value="Kuota">Kuota</option>
       <option value="Token Listrik">Token Listrik</option>
@@ -424,10 +449,24 @@
   <script>
   // Banner slider
   let bannerIndex = 0;
-  setInterval(() => {
-    bannerIndex = (bannerIndex + 1) % 3;
-    document.getElementById('zona-banner').style.transform = `translateX(-${bannerIndex*470}px)`;
-  }, 3400);
+  const bannerTotal = 3;
+  const banner = document.getElementById('zona-banner');
+  const bannerDots = document.getElementById('zona-banner-dots');
+  function renderBannerDots() {
+    bannerDots.innerHTML = '';
+    for(let i=0;i<bannerTotal;i++) {
+      const d = document.createElement('div');
+      d.className = 'zona-banner-dot' + (i===bannerIndex?' active':'');
+      bannerDots.appendChild(d);
+    }
+  }
+  function nextBanner() {
+    bannerIndex = (bannerIndex + 1) % bannerTotal;
+    banner.style.transform = `translateX(-${bannerIndex*100}vw)`;
+    renderBannerDots();
+  }
+  setInterval(nextBanner, 3400);
+  renderBannerDots();
 
   // Produk Data (ganti url gambar sesuai kebutuhan)
   const adminWA = "6282173914245";
@@ -466,7 +505,7 @@
       prod.name.toLowerCase().includes(keyword.toLowerCase())
     );
     if(filtered.length === 0) {
-      productList.innerHTML = `<div style="padding:40px 0;font-size:1.1em;color:#185a9d;text-align:center;width:100%;">Produk tidak ditemukan</div>`;
+      productList.innerHTML = `<div style="padding:35px 0;font-size:1.05em;color:#185a9d;text-align:center;width:100%;">Produk tidak ditemukan</div>`;
       return;
     }
     filtered.forEach(prod => {
@@ -540,7 +579,7 @@
       const cat = el.getAttribute('data-cat');
       document.getElementById('select-kategori').value = cat;
       renderProducts(cat, document.getElementById('search-produk').value);
-      window.scrollTo({top: 380, behavior: "smooth"});
+      window.scrollTo({top: 270, behavior: "smooth"});
     }
   });
 
